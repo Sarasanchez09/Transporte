@@ -11,7 +11,7 @@ import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './Schemas/book.schema';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('Book')
 @Controller('book')
@@ -19,12 +19,14 @@ export class BookController {
   constructor(private readonly bookService: BookService) {}
 
   @ApiOperation({ summary: 'Crea un nuevo libro' })
+  @ApiResponse({ status: 201, description: 'Libro creado correctamente' })
   @Post()
   async create(@Body() createBookDto: CreateBookDto): Promise<Book> {
     return this.bookService.create(createBookDto);
   }
 
   @ApiOperation({ summary: 'Obtener todos los libros' })
+  @ApiResponse({ status: 201, description: 'libros encotrados correctamente' })
   @Get('')
   async findAll(): Promise<Book[]> {
     const books = await this.bookService.findAll();
@@ -39,6 +41,7 @@ export class BookController {
   }
 
   @ApiOperation({ summary: 'Actualizar un libro por ID' })
+  @ApiResponse({ status: 201, description: 'libro actualizado correctamente' })
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -48,6 +51,7 @@ export class BookController {
   }
 
   @ApiOperation({ summary: 'Eliminar un libro por ID' })
+  @ApiResponse({ status: 201, description: 'libro eliminado correctamente' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.bookService.removeById(id);

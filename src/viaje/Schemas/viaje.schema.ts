@@ -6,10 +6,10 @@ export class Viaje {
   id: string;
 
   @Prop()
-  DepOrigen: string;
+  DepOrigen: String;
 
   @Prop()
-  fechaYHoraInicio: string;
+  fechaYHoraInicio: Date;
 
   @Prop()
   fechaYHoraDestino: string;

@@ -1,14 +1,39 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { TiposVehiculos } from '../Schemas/vehiculo.schema';
+import { IsDate, IsEnum, IsNumber, IsString } from 'class-validator';
 
 export class CreateVehiculoDto {
-  @ApiProperty({ description: 'razon social de la empresa' })
+  @ApiProperty({ description: 'patente del vehiculo' })
   @IsString()
-  datos: string;
+  patente: String;
 
-  @ApiProperty({ description: 'CUIT / RUT de la empresa ' })
+  @ApiProperty({ description: 'marca del vehiculo' })
+  @IsString()
+  marca: string;
+
+  @ApiProperty({ description: 'modelo del vehiculo' })
+  @IsString()
+  modelo: string;
+
+  @ApiProperty({ description: 'año del vehiculo' })
+  @IsDate()
+  año: Date;
+
+  @ApiProperty({ description: 'carga del vehiculo ' })
   @IsNumber()
-  tecnica: String;
+  carga: number;
+
+  @ApiProperty({ description: 'volumen de carga ' })
+  @IsNumber()
+  volumen: number;
+
+  @ApiProperty({ description: 'peso del vehiculo' })
+  @IsNumber()
+  peso: number;
+
+  @ApiProperty({ description: 'tipo de vehiculo' })
+  @IsEnum(TiposVehiculos)
+  tipo: TiposVehiculos;
 
   @ApiProperty({ description: 'domicilio fiscal de la empresa' })
   @IsString()
